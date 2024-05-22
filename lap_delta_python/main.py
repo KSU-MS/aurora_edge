@@ -43,16 +43,12 @@ if __name__ == "__main__":
     # to optimize the search part
     min_distance = float("inf")
     closest_point = None
-    points = zip(lat, lon)
+    points = zip(lat, lon, pos)
+    target_point = [int(sys.argv[1]), int(sys.argv[2])]
 
     for point in points:
         # distance = euclidean_distance(given_point, point)
-        distance = math.sqrt(
-            sum(
-                (x - y) ** 2
-                for x, y in zip([int(sys.argv[1]), int(sys.argv[2])], point)
-            )
-        )
+        distance = math.sqrt(sum((x - y) ** 2 for x, y in zip(target_point, point)))
         if distance < min_distance:
             min_distance = distance
             closest_point = point
